@@ -12,23 +12,23 @@ public class Bucket
     /// <summary>
     /// Represents the user generated identification of the bucket.
     /// </summary>
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; } = string.Empty;
 
     /// <summary>
     /// Represents the financial target being tracked by the bucket.
     /// </summary>
-    public string Category { get; set; } = string.Empty;
+    public Category Category { get; set; } = Category.Misc;
 
     /// <summary>
     /// Represents the user set target funding for this bucket.
     /// </summary>
-    public decimal Size { get; set; } = 0M;
+    public decimal Budget { get; set; } = 0M;
 
     /// <summary>
     /// Represents the goal date. User can set date or date should be set
     /// to end of set period (month, week, etc)
     /// </summary>
-    public SqlDateTime FillDate { get; set; } = new();
+    public SqlDateTime? FillDate { get; set; } = new();
 
     /// <summary>
     /// Represents the current amount of funding allocated towards filling
@@ -39,16 +39,16 @@ public class Bucket
     /// <summary>
     /// The transaction history (debits, deposits, transfers) of the bucket.
     /// </summary>
-    public History History { get; set; } = new();
+    public History? History { get; set; } = new();
 
     /// <summary>
     /// Calculates and returns the current fill level (progress) of the bucket.
     /// </summary>
-    public decimal Progress
+    public decimal? Progress
     {
         get
         {
-            return Drops / Size;
+            return Drops / Budget;
         }
     }
 
