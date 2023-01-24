@@ -39,16 +39,27 @@ public class Bucket
     /// <summary>
     /// The transaction history (debits, deposits, transfers) of the bucket.
     /// </summary>
-    public History? History { get; set; } = new();
+    public History History { get; set; } = new();
 
     /// <summary>
     /// Calculates and returns the current fill level (progress) of the bucket.
     /// </summary>
-    public decimal? Progress
+    public decimal Progress
     {
         get
         {
             return Drops / Budget;
+        }
+    }
+
+    /// <summary>
+    /// Represents the available funding after expenditures from the alloacted funds.
+    /// </summary>
+    public decimal WaterLevel
+    {
+        get
+        {
+            return Drops - History.DebitsAmount;
         }
     }
 

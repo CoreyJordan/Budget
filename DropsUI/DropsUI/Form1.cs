@@ -8,52 +8,39 @@ namespace DropsUI;
 
 public partial class Form1 : GradientForm
 {
+    /// <summary>
+    /// Test data to build app until database is linked
+    /// </summary>
+    public SampleData sample = new();
+
     public List<Bucket> utilities = new();
     public List<Bucket> subscriptions = new();
-
-    // TEST CODE: Buckets should be generated from DB data
-    private Bucket electricBill = new()
-    {
-        Name = "Electric Bill",
-        Category = Category.Utilities,
-        Budget = 3_500M,
-        Drops = 150M
-    };
-
-    private Bucket internet = new()
-    {
-        Name = "Internet",
-        Category = Category.Utilities,
-        Budget = 115.27M,
-        Drops = 0M
-    };
-
-    private Bucket netflix = new()
-    {
-        Name = "Netflix",
-        Category = Category.Subscription,
-        Budget = 15M,
-        Drops = 10M
-    };
-
-    // END TEST CODE
 
     public Form1()
     {
         InitializeComponent();
-
-        // TEST CODE Add buckets from test code above
-        utilities.Add(electricBill);
-        utilities.Add(internet);
-        subscriptions.Add(netflix);
-        // END TEST CODE
-
-        PopulateTotals();
-        PopulateCategory(pnlUtilities, utilities);
-        PopulateCategory(pnlSubscriptions, subscriptions);
+        PopulateBucketLists();
+        DisplayTotals();
+        DisplayCategory(pnlUtilities, utilities);
+        DisplayCategory(pnlSubscriptions, subscriptions);
     }
 
-    private void PopulateTotals()
+    private void PopulateBucketLists()
+    {
+        foreach (Bucket bucket in sample.Buckets)
+        {
+            if (bucket.Category == Category.Utilities)
+            {
+                utilities.Add(bucket);
+            }
+            else if (bucket.Category == Category.Subscription)
+            {
+                subscriptions.Add(bucket);
+            }
+        }
+    }
+
+    private void DisplayTotals()
     {
         lblUtiltiesBudget.Text = GetTotalBudget(utilities).ToString("C");
         lblUtilitiesAvailable.Text = GetTotalAvailable(utilities).ToString("C");
@@ -76,7 +63,7 @@ public partial class Form1 : GradientForm
         }
         else
         {
-            PopulateCategory(pnlUtilities, utilities);
+            DisplayCategory(pnlUtilities, utilities);
         }
     }
 
@@ -88,11 +75,11 @@ public partial class Form1 : GradientForm
         }
         else
         {
-            PopulateCategory(pnlSubscriptions, subscriptions);
+            DisplayCategory(pnlSubscriptions, subscriptions);
         }
     }
 
-    private static void PopulateCategory(TableLayoutPanel panel, List<Bucket> buckets)
+    private static void DisplayCategory(TableLayoutPanel panel, List<Bucket> buckets)
     {
         panel.SuspendLayout();
         panel.Controls.Clear();
@@ -100,31 +87,80 @@ public partial class Form1 : GradientForm
         // Expand the display to show individual buckets in the category.
         foreach (var bucket in buckets)
         {
-            Label name = new()
-            {
-                Text = bucket.Name,
-                AutoSize = true,
-                Anchor = AnchorStyles.Left
-            };
-            Label budget = new()
-            {
-                Text = bucket.Budget.ToString("C"),
-                Anchor = AnchorStyles.Right,
-                AutoSize = true
-            };
-            RoundButton available = new()
-            {
-                Text = bucket.Drops.ToString("C"),
-                TextAlign = ContentAlignment.TopRight,
-                Anchor = AnchorStyles.Right,
-                Size = new(120, 30),
-            };
+            Label name = CreateLblName(bucket);
+            Label budget = CreateLblBudget(bucket);
+            RoundButton available = CreateBtnAvailable(bucket);
 
             panel.Controls.Add(name, 1, buckets.IndexOf(bucket));
             panel.Controls.Add(budget, 2, buckets.IndexOf(bucket));
             panel.Controls.Add(available, 3, buckets.IndexOf(bucket));
+
+            // Signal to user status of the available funding.
+            SignalButtons(panel, bucket);
         }
         panel.ResumeLayout();
+    }
+
+    private static Label CreateLblName(Bucket bucket)
+    {
+        return new()
+        {
+            Text = bucket.Name,
+            AutoSize = true,
+            Anchor = AnchorStyles.Left
+        };
+    }
+
+    private static Label CreateLblBudget(Bucket bucket)
+    {
+        return new()
+        {
+            Text = bucket.Budget.ToString("C"),
+            Anchor = AnchorStyles.Right,
+            AutoSize = true
+        };
+    }
+
+    private static RoundButton CreateBtnAvailable(Bucket bucket)
+    {
+        return new()
+        {
+            Name = "btn" + bucket.Name,
+            Text = bucket.WaterLevel.ToString("C"),
+            TextAlign = ContentAlignment.TopRight,
+            Anchor = AnchorStyles.Right,
+            Size = new(120, 30),
+        };
+    }
+
+    private static void SignalButtons(TableLayoutPanel panel, Bucket bucket)
+    {
+        Button? button = null;
+        if (panel.Controls.ContainsKey("btn" + bucket.Name))
+        {
+            button = panel.Controls["btn" + bucket.Name] as Button;
+        }
+
+        if (button != null)
+        {
+            if (bucket.WaterLevel < 0)
+            {
+                button.BackColor = Color.Red;
+            }
+            else if (bucket.WaterLevel == 0m)
+            {
+                button.BackColor = Color.Yellow;
+                button.ForeColor = Color.Black;
+            }
+            else if (bucket.WaterLevel < bucket.Budget)
+            {
+                button.BackColor = Color.Blue;
+            }
+            else if (bucket.WaterLevel >= bucket.Budget)
+            {
+                button.BackColor = Color.Green;
+            }
+        }
     }
 
     // Acounting Methods
@@ -143,7 +179,7 @@ public partial class Form1 : GradientForm
         decimal total = 0;
         foreach (var bucket in buckets)
         {
-            total += bucket.Drops;
+            total += bucket.WaterLevel;
         }
         return total;
     }
