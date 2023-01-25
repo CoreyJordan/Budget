@@ -1,6 +1,5 @@
 using DropsLibrary;
 using DropsUI.Controls;
-using System.Net.Sockets;
 
 // TODO FlowTables in flowtables in flowtables
 // Design rounded border flowtable?
@@ -15,6 +14,12 @@ public partial class Form1 : GradientForm
 
     public List<Bucket> utilities = new();
     public List<Bucket> subscriptions = new();
+
+    public Color snow = Color.FromArgb(249, 247, 243);
+    public Color sweetRed = Color.FromArgb(255, 89, 100);
+    public Color coolTeal = Color.FromArgb(0, 42, 50);
+    public Color sweetGreen = Color.FromArgb(0, 166, 118);
+    public Color springBlue = Color.FromArgb(53, 167, 255);
 
     public Form1()
     {
@@ -55,31 +60,7 @@ public partial class Form1 : GradientForm
         Invalidate();
     }
 
-    private void TglUtilities_CheckedChanged(object sender, EventArgs e)
-    {
-        if (!tglUtilities.Checked)
-        {
-            pnlUtilities.Controls.Clear();
-        }
-        else
-        {
-            DisplayCategory(pnlUtilities, utilities);
-        }
-    }
-
-    private void TglSubscriptions_CheckedChanged(object sender, EventArgs e)
-    {
-        if (!tglSubscriptions.Checked)
-        {
-            pnlSubscriptions.Controls.Clear();
-        }
-        else
-        {
-            DisplayCategory(pnlSubscriptions, subscriptions);
-        }
-    }
-
-    private static void DisplayCategory(TableLayoutPanel panel, List<Bucket> buckets)
+    private void DisplayCategory(TableLayoutPanel panel, List<Bucket> buckets)
     {
         panel.SuspendLayout();
         panel.Controls.Clear();
@@ -129,36 +110,39 @@ public partial class Form1 : GradientForm
             Text = bucket.WaterLevel.ToString("C"),
             TextAlign = ContentAlignment.TopRight,
             Anchor = AnchorStyles.Right,
-            Size = new(120, 30),
+            Size = new(120, 30)
         };
     }
 
-    private static void SignalButtons(TableLayoutPanel panel, Bucket bucket)
+    private void SignalButtons(TableLayoutPanel panel, Bucket bucket)
     {
-        Button? button = null;
+        RoundButton? button = null;
         if (panel.Controls.ContainsKey("btn" + bucket.Name))
         {
-            button = panel.Controls["btn" + bucket.Name] as Button;
+            button = panel.Controls["btn" + bucket.Name] as RoundButton;
         }
 
         if (button != null)
         {
             if (bucket.WaterLevel < 0)
             {
-                button.BackColor = Color.Red;
+                button.BackColor = sweetRed;
+                button.BackColor2 = snow;
             }
             else if (bucket.WaterLevel == 0m)
             {
                 button.BackColor = Color.Yellow;
-                button.ForeColor = Color.Black;
+                button.BackColor2 = snow;
             }
             else if (bucket.WaterLevel < bucket.Budget)
             {
-                button.BackColor = Color.Blue;
+                button.BackColor = springBlue;
+                button.BackColor2 = snow;
             }
             else if (bucket.WaterLevel >= bucket.Budget)
             {
-                button.BackColor = Color.Green;
+                button.BackColor = sweetGreen;
+                button.BackColor2 = snow;
             }
         }
     }
@@ -182,5 +166,29 @@ public partial class Form1 : GradientForm
             total += bucket.WaterLevel;
         }
         return total;
+    }
+
+    private void tglUtilities_CheckedChanged_1(object sender, EventArgs e)
+    {
+        if (!tglUtilities.Checked)
+        {
+            pnlUtilities.Controls.Clear();
+        }
+        else
+        {
+            DisplayCategory(pnlUtilities, utilities);
+        }
+    }
+
+    private void tglSubscriptions_CheckedChanged_1(object sender, EventArgs e)
+    {
+        if (!tglSubscriptions.Checked)
+        {
+            pnlSubscriptions.Controls.Clear();
+        }
+        else
+        {
+            DisplayCategory(pnlSubscriptions, subscriptions);
+        }
     }
 }

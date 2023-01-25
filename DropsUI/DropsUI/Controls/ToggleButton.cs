@@ -133,7 +133,7 @@ public class ToggleButton : CheckBox
     {
         int toggleSize = Height - 5;
         pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-        pevent.Graphics.Clear(_clearKey);
+        pevent.Graphics.Clear(Parent.BackColor);
 
         if (Checked) // ON
         {

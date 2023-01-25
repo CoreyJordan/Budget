@@ -32,8 +32,8 @@ partial class Form1
             this.lblUtiltiesBudget = new System.Windows.Forms.Label();
             this.lblUtilitiesAvailable = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tglUtilities = new Control_Builder.Controls.ToggleButton();
             this.roundPanel2 = new DropsUI.Controls.RoundPanel();
+            this.tglUtilities = new System.Windows.Forms.CheckBox();
             this.pnlMasterLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlUtilities = new System.Windows.Forms.TableLayoutPanel();
             this.label22 = new System.Windows.Forms.Label();
@@ -41,8 +41,8 @@ partial class Form1
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.roundPanel3 = new DropsUI.Controls.RoundPanel();
+            this.tglSubscriptions = new System.Windows.Forms.CheckBox();
             this.lblSubscriptionsAvailable = new System.Windows.Forms.Label();
-            this.tglSubscriptions = new Control_Builder.Controls.ToggleButton();
             this.label15 = new System.Windows.Forms.Label();
             this.lblSubscriptionsBudget = new System.Windows.Forms.Label();
             this.pnlSubscriptions = new System.Windows.Forms.TableLayoutPanel();
@@ -61,8 +61,8 @@ partial class Form1
             // 
             this.roundPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.roundPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(48)))), ((int)(((byte)(90)))));
-            this.roundPanel1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(80)))), ((int)(((byte)(142)))));
+            this.roundPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.roundPanel1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(247)))), ((int)(((byte)(243)))));
             this.roundPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(48)))), ((int)(((byte)(90)))));
             this.roundPanel1.BorderRadius = 40;
             this.roundPanel1.BorderSize = 0;
@@ -79,7 +79,7 @@ partial class Form1
             this.lblUtiltiesBudget.BackColor = System.Drawing.Color.Transparent;
             this.lblUtiltiesBudget.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblUtiltiesBudget.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUtiltiesBudget.Location = new System.Drawing.Point(295, 9);
+            this.lblUtiltiesBudget.Location = new System.Drawing.Point(292, 9);
             this.lblUtiltiesBudget.Margin = new System.Windows.Forms.Padding(5);
             this.lblUtiltiesBudget.Name = "lblUtiltiesBudget";
             this.lblUtiltiesBudget.Size = new System.Drawing.Size(136, 26);
@@ -93,7 +93,7 @@ partial class Form1
             this.lblUtilitiesAvailable.BackColor = System.Drawing.Color.Transparent;
             this.lblUtilitiesAvailable.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblUtilitiesAvailable.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUtilitiesAvailable.Location = new System.Drawing.Point(460, 9);
+            this.lblUtilitiesAvailable.Location = new System.Drawing.Point(457, 9);
             this.lblUtilitiesAvailable.Margin = new System.Windows.Forms.Padding(5);
             this.lblUtilitiesAvailable.Name = "lblUtilitiesAvailable";
             this.lblUtilitiesAvailable.Size = new System.Drawing.Size(125, 26);
@@ -113,46 +113,39 @@ partial class Form1
             this.label1.TabIndex = 9;
             this.label1.Text = "Utilities";
             // 
-            // tglUtilities
-            // 
-            this.tglUtilities.AutoSize = true;
-            this.tglUtilities.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tglUtilities.Checked = true;
-            this.tglUtilities.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tglUtilities.ClearKey = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(75)))));
-            this.tglUtilities.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tglUtilities.Location = new System.Drawing.Point(19, 9);
-            this.tglUtilities.Margin = new System.Windows.Forms.Padding(5);
-            this.tglUtilities.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tglUtilities.Name = "tglUtilities";
-            this.tglUtilities.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(80)))), ((int)(((byte)(142)))));
-            this.tglUtilities.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tglUtilities.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(80)))), ((int)(((byte)(142)))));
-            this.tglUtilities.OnToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.tglUtilities.Size = new System.Drawing.Size(45, 22);
-            this.tglUtilities.SolidStyle = false;
-            this.tglUtilities.TabIndex = 2;
-            this.tglUtilities.UseVisualStyleBackColor = false;
-            this.tglUtilities.CheckedChanged += new System.EventHandler(this.TglUtilities_CheckedChanged);
-            // 
             // roundPanel2
             // 
             this.roundPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.roundPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(167)))), ((int)(((byte)(255)))));
-            this.roundPanel2.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(50)))));
+            this.roundPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.roundPanel2.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(167)))), ((int)(((byte)(255)))));
             this.roundPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
             this.roundPanel2.BorderRadius = 40;
             this.roundPanel2.BorderSize = 0;
-            this.roundPanel2.Controls.Add(this.lblUtilitiesAvailable);
             this.roundPanel2.Controls.Add(this.tglUtilities);
+            this.roundPanel2.Controls.Add(this.lblUtilitiesAvailable);
             this.roundPanel2.Controls.Add(this.label1);
             this.roundPanel2.Controls.Add(this.lblUtiltiesBudget);
             this.roundPanel2.ForeColor = System.Drawing.Color.White;
             this.roundPanel2.Location = new System.Drawing.Point(3, 3);
             this.roundPanel2.Name = "roundPanel2";
-            this.roundPanel2.Size = new System.Drawing.Size(591, 40);
+            this.roundPanel2.Size = new System.Drawing.Size(588, 40);
             this.roundPanel2.TabIndex = 5;
             this.roundPanel2.TextColor = System.Drawing.Color.White;
+            // 
+            // tglUtilities
+            // 
+            this.tglUtilities.Appearance = System.Windows.Forms.Appearance.Button;
+            this.tglUtilities.Checked = true;
+            this.tglUtilities.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tglUtilities.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tglUtilities.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.tglUtilities.Location = new System.Drawing.Point(28, 9);
+            this.tglUtilities.Name = "tglUtilities";
+            this.tglUtilities.Size = new System.Drawing.Size(24, 26);
+            this.tglUtilities.TabIndex = 11;
+            this.tglUtilities.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tglUtilities.UseVisualStyleBackColor = true;
+            this.tglUtilities.CheckedChanged += new System.EventHandler(this.tglUtilities_CheckedChanged_1);
             // 
             // pnlMasterLayout
             // 
@@ -230,13 +223,13 @@ partial class Form1
             // 
             // roundPanel3
             // 
-            this.roundPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(167)))), ((int)(((byte)(255)))));
-            this.roundPanel3.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(50)))));
+            this.roundPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.roundPanel3.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(167)))), ((int)(((byte)(255)))));
             this.roundPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
             this.roundPanel3.BorderRadius = 40;
             this.roundPanel3.BorderSize = 0;
-            this.roundPanel3.Controls.Add(this.lblSubscriptionsAvailable);
             this.roundPanel3.Controls.Add(this.tglSubscriptions);
+            this.roundPanel3.Controls.Add(this.lblSubscriptionsAvailable);
             this.roundPanel3.Controls.Add(this.label15);
             this.roundPanel3.Controls.Add(this.lblSubscriptionsBudget);
             this.roundPanel3.ForeColor = System.Drawing.Color.White;
@@ -245,6 +238,21 @@ partial class Form1
             this.roundPanel3.Size = new System.Drawing.Size(591, 40);
             this.roundPanel3.TabIndex = 7;
             this.roundPanel3.TextColor = System.Drawing.Color.White;
+            // 
+            // tglSubscriptions
+            // 
+            this.tglSubscriptions.Appearance = System.Windows.Forms.Appearance.Button;
+            this.tglSubscriptions.Checked = true;
+            this.tglSubscriptions.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tglSubscriptions.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tglSubscriptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.tglSubscriptions.Location = new System.Drawing.Point(28, 9);
+            this.tglSubscriptions.Name = "tglSubscriptions";
+            this.tglSubscriptions.Size = new System.Drawing.Size(24, 24);
+            this.tglSubscriptions.TabIndex = 12;
+            this.tglSubscriptions.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tglSubscriptions.UseVisualStyleBackColor = true;
+            this.tglSubscriptions.CheckedChanged += new System.EventHandler(this.tglSubscriptions_CheckedChanged_1);
             // 
             // lblSubscriptionsAvailable
             // 
@@ -258,28 +266,6 @@ partial class Form1
             this.lblSubscriptionsAvailable.TabIndex = 10;
             this.lblSubscriptionsAvailable.Text = "<$###.##>";
             this.lblSubscriptionsAvailable.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // tglSubscriptions
-            // 
-            this.tglSubscriptions.AutoSize = true;
-            this.tglSubscriptions.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tglSubscriptions.Checked = true;
-            this.tglSubscriptions.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tglSubscriptions.ClearKey = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(75)))));
-            this.tglSubscriptions.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tglSubscriptions.Location = new System.Drawing.Point(19, 9);
-            this.tglSubscriptions.Margin = new System.Windows.Forms.Padding(5);
-            this.tglSubscriptions.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tglSubscriptions.Name = "tglSubscriptions";
-            this.tglSubscriptions.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(80)))), ((int)(((byte)(142)))));
-            this.tglSubscriptions.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tglSubscriptions.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(80)))), ((int)(((byte)(142)))));
-            this.tglSubscriptions.OnToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.tglSubscriptions.Size = new System.Drawing.Size(45, 22);
-            this.tglSubscriptions.SolidStyle = false;
-            this.tglSubscriptions.TabIndex = 2;
-            this.tglSubscriptions.UseVisualStyleBackColor = false;
-            this.tglSubscriptions.CheckedChanged += new System.EventHandler(this.TglSubscriptions_CheckedChanged);
             // 
             // label15
             // 
@@ -371,8 +357,8 @@ partial class Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(25)))), ((int)(((byte)(54)))));
-            this.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(42)))), ((int)(((byte)(50)))));
+            this.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(247)))), ((int)(((byte)(243)))));
             this.ClientSize = new System.Drawing.Size(626, 1061);
             this.Controls.Add(this.pnlMasterLayout);
             this.Controls.Add(this.roundPanel1);
@@ -383,7 +369,6 @@ partial class Form1
             this.Text = "HomePage";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.roundPanel2.ResumeLayout(false);
-            this.roundPanel2.PerformLayout();
             this.pnlMasterLayout.ResumeLayout(false);
             this.pnlMasterLayout.PerformLayout();
             this.pnlUtilities.ResumeLayout(false);
@@ -400,14 +385,12 @@ partial class Form1
 
     private Controls.RoundPanel roundPanel1;
     private Label lblUtiltiesBudget;
-    private Control_Builder.Controls.ToggleButton tglUtilities;
     private Label label1;
     private Label lblUtilitiesAvailable;
     private Controls.RoundPanel roundPanel2;
     private FlowLayoutPanel pnlMasterLayout;
     private Controls.RoundPanel roundPanel3;
     private Label lblSubscriptionsAvailable;
-    private Control_Builder.Controls.ToggleButton tglSubscriptions;
     private Label label15;
     private Label lblSubscriptionsBudget;
     private TableLayoutPanel pnlUtilities;
@@ -420,4 +403,6 @@ partial class Form1
     private Label label3;
     private Label label4;
     private Label label5;
+    private CheckBox tglUtilities;
+    private CheckBox tglSubscriptions;
 }

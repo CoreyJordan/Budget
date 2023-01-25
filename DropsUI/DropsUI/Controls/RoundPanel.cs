@@ -121,7 +121,7 @@ public class RoundPanel : Panel
             using (GraphicsPath pathBorder = GetFigurePath(rectBorder, _borderRadius - 1F))
             using (Pen penSurface = new(Parent.BackColor, 2))
             using (Pen penBorder = new(_borderColor, _borderSize))
-            using (LinearGradientBrush brush = new(rectSurface, BackColor, BackColor2, LinearGradientMode.BackwardDiagonal))
+            using (LinearGradientBrush brush = new(rectSurface, BackColor, BackColor2, LinearGradientMode.ForwardDiagonal))
             {
                 penBorder.Alignment = PenAlignment.Inset;
                 Region = new(pathSurface);

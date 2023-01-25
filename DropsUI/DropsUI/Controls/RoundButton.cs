@@ -10,6 +10,7 @@ public class RoundButton : Button
     private int _borderSize = 0;
     private int _borderRadius = 40;
     private Color _borderColor = Color.PaleVioletRed;
+    private Color _backColor2 = Color.PaleVioletRed;
 
     // Properties
 
@@ -66,7 +67,11 @@ public class RoundButton : Button
     public Color BackgroundColor
     {
         get { return BackColor; }
-        set { BackColor = value; }
+        set
+        {
+            BackColor = value;
+            Invalidate();
+        }
     }
 
     [Category("Custom Button")]
@@ -74,6 +79,17 @@ public class RoundButton : Button
     {
         get { return ForeColor; }
         set { ForeColor = value; }
+    }
+
+    [Category("Custom Button")]
+    public Color BackColor2
+    {
+        get { return _backColor2; }
+        set
+        {
+            _backColor2 = value;
+            Invalidate();
+        }
     }
 
     // Constructors
@@ -110,6 +126,8 @@ public class RoundButton : Button
 
         RectangleF rectSurface = new(0, 0, Width, Height);
         RectangleF rectBorder = new(1, 1, Width - 0.8F, Height - 1);
+        SizeF size = pevent.Graphics.MeasureString(Text, Font);
+        PointF topLeft = new(Width / 2 - size.Width / 2, Height / 2 - size.Height / 2);
 
         if (_borderRadius > 2) // Rounded buton
         {
@@ -117,16 +135,21 @@ public class RoundButton : Button
             using (GraphicsPath pathBorder = GetFigurePath(rectBorder, _borderRadius - 1F))
             using (Pen penSurface = new(Parent.BackColor, 2))
             using (Pen penBorder = new(_borderColor, _borderSize))
+            using (LinearGradientBrush brush = new(rectSurface, BackColor, BackColor2, LinearGradientMode.ForwardDiagonal))
             {
                 penBorder.Alignment = PenAlignment.Inset;
                 Region = new(pathSurface);
                 // Draw surface border for HD result
                 pevent.Graphics.DrawPath(penSurface, pathSurface);
+                pevent.Graphics.FillRectangle(brush, rectSurface);
+                pevent.Graphics.DrawString(Text, Font, Brushes.Black, topLeft);
                 // Draw border.
                 if (_borderSize > 0)
                 {
                     pevent.Graphics.DrawPath(penBorder, pathBorder);
                 }
+
+                // Draw the text
             }
         }
         else // Normal button
